@@ -1,0 +1,1 @@
+# change-django-app-name
