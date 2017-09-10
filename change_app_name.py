@@ -12,10 +12,10 @@ admin_grp = Group.objects.get(name='<grp_name>')  # add new permissions if chang
 for p in permissions:
     admin_grp.permissions.add(p)
 with connection.cursor() as c:
-    c.execute("update django_migrations set app='pcm' where app='url_integration';")  # update django migrations table to set new app name
-    c.execute("select relname from pg_stat_user_tables where relname like 'url_integration%';")  # select all tables of database to rename it
+    c.execute("update django_migrations set app='<app_name>' where app='<old_app_name>';")  # update django migrations table to set new app name
+    c.execute("select relname from pg_stat_user_tables where relname like '<old_app_name>%';")  # select all tables of database to rename it
     data = c.fetchall()
     for d in data:
         name = d[0]
         name = name.split("url_integration_")[1]
-        c.execute("ALTER table %s RENAME to pcm_%s;" % (d[0], name))
+        c.execute("ALTER table %s RENAME to <app_name>_%s;" % (d[0], name))
