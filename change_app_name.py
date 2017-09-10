@@ -17,5 +17,5 @@ with connection.cursor() as c:
     data = c.fetchall()
     for d in data:
         name = d[0]
-        name = name.split("url_integration_")[1]
+        name = name.split("<old_app_name>_")[1]
         c.execute("ALTER table %s RENAME to <app_name>_%s;" % (d[0], name))
