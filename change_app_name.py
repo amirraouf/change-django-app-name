@@ -6,8 +6,8 @@ from django.db.models import Q
 
 
 ContentType.objects.filter(app_label='<old_app_name>').update(app_label='<app_name>')  # change content type to prevent django migrations from re-migrate
-permissions = Permission.objects.filter(Q(content_type__app_label='url_integrations') |
-                                        Q(content_type__app_label='pcm'))
+permissions = Permission.objects.filter(Q(content_type__app_label='app_label1') |
+                                        Q(content_type__app_label='app_label2'))
 admin_grp = Group.objects.get(name='<grp_name>')  # add new permissions if changed or deleted
 for p in permissions:
     admin_grp.permissions.add(p)
